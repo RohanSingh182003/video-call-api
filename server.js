@@ -12,7 +12,11 @@ app.get('/',(req,res)=>{
 
 const server = app.listen(PORT,()=> console.log(`alive on ${PORT}`))
 
-const io = new Server(server)
+const io = require('socket.io')(server, {
+    cors: {
+      origin: '*',
+    }
+  });
 
 io.on('connection', (socket)=>{
     console.log('A user connected!')
